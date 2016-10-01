@@ -1,0 +1,27 @@
+html,body,h1,h2,h3,h4,h5,h6,p,ul,ol,dl,dt,dd,th,td,form,fieldset,legend,blockquote{margin:0;padding:0}
+body{line-height:1}
+ol,ul{list-style-type:none}
+img{border:0;vertical-align:top}
+:focus{outline:none}
+table{border-collapse:collapse;border-spacing:0}
+input,textarea,select,button{margin:0}
+button::-moz-focus-inner{padding:0;border:none}
+
+/*Clearing*/
+.clear{height:1px;clear:both;font-size:1px;visibility:hidden}
+.clearfix:after,.field:after,.l-outer-i:after,.l-column:after{height:0;content:" ";display:block;clear:both;font-size:0;visibility:hidden}
+/* for IE */
+.clearfix,.field,.l-outer-i,.l-column{zoom:1}
+
+body,html{height:100%}
+
+/* -- Typography -- */
+body,input,textarea,option,select{font-size:12px;line-height:normal;font-family:Arial,Verdana,Tahoma,Sans-serif;color:#2c2b2b}
+/*input,textarea,option,select{color:#2c2b2b;font-family:Arial}*/
+a{color:#119FFF;text-decoration:none}
+a:hover{color:#FF5900;text-decoration:none}
+
+/* Text elements */
+h4{font-size:14px;line-height:normal}
+h5{font-size:12px;line-height:normal}
+p{font-size:12px;line-height:normal}

@@ -3,6 +3,7 @@ var mainBowerFiles = require('main-bower-files');
 var browserSync = require('browser-sync');
 var rigger = require('gulp-rigger');
 var del = require('del');
+var autoprefixer = require('gulp-autoprefixer');
 
 var config = {
     src: {
@@ -94,9 +95,21 @@ gulp.task('clean', function() {
 
 // в случае изменения сущестующих или появления новых файлов - выполняем задачи js(вывод в консоль сообщения) и reload - перезапуск browser-sync 
 // аналогично по css и html
-gulp.task('watch', ['clean', 'browser-sync', 'js', 'css', 'html', 'rigger', 'mainfiles'], function() {
+gulp.task('watch', ['clean', 'browser-sync', 'js', 'css', 'html', 'rigger', 'mainfiles', 'prefixer'], function() {
     gulp.watch(config.src.main + config.src.js + '**/*.js', ['js', 'reload']);
     gulp.watch(config.src.main + config.src.css + '**/*.css', ['css', 'reload']);
     gulp.watch(config.src.main + '**/*.html', ['html', 'reload']);
 
+});
+
+
+
+ 
+gulp.task('prefixer', function () {
+    return gulp.src('app/assets/css/style.css')
+        .pipe(autoprefixer({
+            browsers: ['last 2 versions'],
+            cascade: false
+        }))
+        .pipe(gulp.dest('dist'));
 });
