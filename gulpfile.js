@@ -10,13 +10,15 @@ var config = {
         main: "app/",
         js: "assets/js/",
         css: "assets/css/",
-        pages: "assets/pages/"
+        pages: "assets/pages/",
+        images: "assets/images"
     },
     dest: {
         main: "dist/",
         js: "assets/js/",
         css: "assets/css/",
-        pages: "assets/pages/"
+        pages: "assets/pages/",
+        images: "assets/images"
     }
 
 }
@@ -46,6 +48,13 @@ gulp.task('html', function() {
     console.log('Файлы html поменялись!');
 });
 
+gulp.task('png', function() {
+    console.log('Файлы png поменялись!');
+});
+
+gulp.task('jpg', function() {
+    console.log('Файлы jpg поменялись!');
+});
 
 gulp.task('rigger', function() {
     gulp.src(config.src.main + config.src.js + '**/*.js')
@@ -63,6 +72,14 @@ gulp.task('rigger', function() {
     gulp.src(config.src.main + config.src.pages + '/**/*.html')
         .pipe(rigger())
         .pipe(gulp.dest(config.dest.main + config.dest.pages));
+
+    gulp.src(config.src.main + config.src.images + '**/*.png')
+        .pipe(rigger())
+        .pipe(gulp.dest(config.dest.main + config.dest.images));
+
+    gulp.src(config.src.main + config.src.images + '**/*.jpg')
+        .pipe(rigger())
+        .pipe(gulp.dest(config.dest.main + config.dest.images));
 });
 
 // задача browser-sync - запуск сервера для отображения изменений в файлах в режиме онлайн (не надо рефрешить)
@@ -95,7 +112,7 @@ gulp.task('clean', function() {
 
 // в случае изменения сущестующих или появления новых файлов - выполняем задачи js(вывод в консоль сообщения) и reload - перезапуск browser-sync 
 // аналогично по css и html
-gulp.task('watch', ['clean', 'browser-sync', 'js', 'css', 'html', 'rigger', 'mainfiles', 'prefixer'], function() {
+gulp.task('watch', ['clean', 'browser-sync', 'js', 'css', 'html', 'png', 'jpg', 'rigger', 'mainfiles', 'prefixer'], function() {
     gulp.watch(config.src.main + config.src.js + '**/*.js', ['js', 'reload']);
     gulp.watch(config.src.main + config.src.css + '**/*.css', ['css', 'reload']);
     gulp.watch(config.src.main + '**/*.html', ['html', 'reload']);
@@ -104,8 +121,8 @@ gulp.task('watch', ['clean', 'browser-sync', 'js', 'css', 'html', 'rigger', 'mai
 
 
 
- 
-gulp.task('prefixer', function () {
+
+gulp.task('prefixer', function() {
     return gulp.src('app/assets/css/style.css')
         .pipe(autoprefixer({
             browsers: ['last 2 versions'],

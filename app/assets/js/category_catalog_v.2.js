@@ -15,17 +15,15 @@ app.currentModule = (function($) {
             objItems.nameItems = ["Apple", "Samsung", "Nokia"];
 
             $(document).ready(function() {
-
+                $(".l-hdcategory h4 span:first-child").text("Все категории");
                 category.remove();
                 viewList(findCategory());
+                viewItems(findTag(objItems));
                 $("#category-list li").off("click").on("click", function() {
                     currentCategory = ($(this).text());
-
-
-                    console.log(currentCategory);
+                    $(".l-hdcategory h4 span:first-child").text(currentCategory);
                     objItems.titleItems = [currentCategory];
                     viewItems(findTag(objItems));
-
                 });
 
                 $('.special-ads a.title,.special-ads .image a').hover(function() {
@@ -71,7 +69,7 @@ app.currentModule = (function($) {
             function viewItems(data) {
                 $("#main-content dd").remove();
                 $.each(data, function(i, item) {
-                    $("#main-content").append('<dd><div class=image><a href="#"><img src="' + data[i].images[0].image + '" width="128" height="98"></img></a></dd>')
+                    $("#main-content").append('<dd><div class=image><a href="#"><img src="' + data[i].images[0].image + '" width="128" height="98"></img></a></div><h4><a href="#">' + data[i].title + '</a><span class="category">in category <a href="#">' + currentCategory + '</a><span></h4><p>' + data[i].shortDescription + '</p></div><div class="info"><div class="region">Belarus</div><ul class="l-actions" style="display: block"><li><i class="b-icon b-icon-like"></i><a href="#" title="Like">Like</a></li><li><i class="b-icon b-icon-share"></i><a href="#" title="Share">Share</a></li><li><i class="b-icon b-icon-favorite"></i><a href="#" title="Add to Favorites">Add to Favorites</a></li><li class="last"><i class="b-icon b-icon-report"></i><a href="#" title="Report">Report</a></li></ul><div class="date-added">Added ' + data[i].created + '</div></div></dd>');
                 });
             }
 
@@ -107,13 +105,16 @@ app.currentModule = (function($) {
                     },
                     condition: condition1
                 };
-
-                var myContact = itemsStorage.find(dataQuery);
+              //  var myContact = Backendless.Persistence.of('items').find(dataQuery, new Backendless.Async(userLoggedIn(myContact), gotError));
+                var myContact = Backendless.Persistence.of('items').find(dataQuery);
                 $.each(myContact.data, function(i, item) {
                     arrayOfItems[arrayOfItems.length] = myContact.data[i];
                 });
                 return arrayOfItems;
             }
+            
+         
+             
 
             function createStringOfSearch(arr, items) {
                 var str = " and (" + items + "='" + arr[0] + "'";

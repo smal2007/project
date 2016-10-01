@@ -1,5 +1,5 @@
 var app = (function($, cont) {
-    
+
     var APPLICATION_ID = '005B0AD0-3D76-48F4-FF85-296C0438F200',
         SECRET_KEY = '3A2A9558-A762-E6A6-FF7D-51D1C5AA3200',
         VERSION = 'v1'; //default application version;
@@ -161,6 +161,7 @@ var app = (function($, cont) {
                 var href = $(this).attr("href");
 
                 pages[href] = {
+
                     src: $(this).data("src"),
                     js: $(this).data("js"),
                 };
@@ -181,6 +182,7 @@ var app = (function($, cont) {
                                 pages[href].module = app.currentModule;
                             }
                         });
+
                     }
                 });
             });
