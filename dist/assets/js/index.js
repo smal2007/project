@@ -1,4 +1,4 @@
-app.currentModule = (function($){
+app.currentModule = (function($) {
     return {
         init: function(obj, callback) {
             console.log("Инициализируем модуль для главной страницы");
@@ -9,5 +9,7 @@ app.currentModule = (function($){
             
             callback();
         }
+
+
     }
 })(jQuery);

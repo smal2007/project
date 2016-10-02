@@ -93,7 +93,7 @@ body {
 .l-ads-block .ads-list-mode-1 .likeComment span {
 	margin-top: -14px;
 	float: right;
-	cursor pointer;
+	cursor: pointer;
 } 
 .l-ads-block .ads-list-mode-1 .likeComment a {
 	text-decoration: none;
